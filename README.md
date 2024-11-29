@@ -1,1 +1,97 @@
-# Resource-Access-Sharing-a-printer-and-configuring-a-shared-folder
+<h1>Resource Access</h1>
+<p>Resource access is the management of permissions that determine which users or systems can view, modify, or interact with specific network resources such as files, applications and devices based on user permissions and roles</p>
+
+<br>
+
+<h3>*Sharing a printer</h3>
+<p>1. To share a printer for an organization or a branch(OU) of an organization to use, first we need to create a GPO, give it a descriptive name</p>
+<p align="center"><img src="https://i.imgur.com/gNpXx1P.png" height="50%" width="50%" alt="image"/>
+<p align="center"><img src="https://i.imgur.com/wmWqfjM.png" height="50%" width="50%" alt="image"/>
+  
+<p>2. Link the GPO to the OU by right-clicking on the OU, then click on Link an existing GPO and Select the policy created for this and click OK</p>
+<p align="center"><img src="https://i.imgur.com/GsWetGy.png" height="50%" width="50%" alt="image"/>
+<p align="center"><img src="https://i.imgur.com/UvYBJDb.png" height="50%" width="50%" alt="image"/>
+
+<p>3. Next, make sure the Print Management is installed on the server.</p>
+<p align="center"><img src="https://i.imgur.com/6IBbJZJ.png" height="50%" width="50%" alt="image"/>
+
+<p><b>Note: If Print management is not installed, you can click Add roles and Features from the server manager dashboard, then select the Print and documenet service to install the print server.</b></p>
+<p align="center"><img src="https://i.imgur.com/aT7xLO8.png" height="50%" width="50%" alt="image"/>
+
+<p>4. For the purpose of the project, I downloaded the HP Universal Print Driver for WindowsPCL6(64-bit)</p
+<p align="center"><img src="https://i.imgur.com/ypB3hrs.png" height="50%" width="50%" alt="image"/>    
+
+<p>5. Open the Print Management interface, go to Print Server>Drivers>Add Driver</p>
+<p align="center"><img src="https://i.imgur.com/Uju5kFO.png" height="50%" width="50%" alt="image"/>
+
+<p>6. On the Add Printer Driver Wizard page, click NEXT</p>
+<p align="center"><img src="https://i.imgur.com/Ql7vTK9.png" height="50%" width="50%" alt="image"/>
+
+<p>7. On the Add Printer Driver Wizard>Processor Selection page, leave it at default and click NEXT</p>
+<p align="center"><img src="https://i.imgur.com/a5nn407.png" height="50%" width="50%" alt="image"/>
+
+<p>8. On the Add Printer Driver Wizard>Printer Driver Selection page, click on Have Disk</p>
+<p align="center"><img src="https://i.imgur.com/d1OoErM.png" height="50%" width="50%" alt="image"/>
+
+<p>9. On the Install from disk page, click on Browse</p>
+<p align="center"><img src="https://i.imgur.com/bP3Ig7B.png" height="50%" width="50%" alt="image"/>
+
+<p>10. Locate the print driver file and click open</p>
+<p align="center"><img src="https://i.imgur.com/8xkXEtD.png" height="50%" width="50%" alt="image"/>
+<p align="center"><img src="https://i.imgur.com/pa9CpGY.png" height="50%" width="50%" alt="image"/>
+
+<p>11. On the Add Printer Driver Wizard>Printer Driver Selection page, you can see the HP Universal Printing PCL6(v7.2.0) is listed, click NEXT.</p>
+<p align="center"><img src="https://i.imgur.com/6x8Miy2.png" height="50%" width="50%" alt="image"/>
+
+<p>12. On the Add Printer Driver Wizard>Completing the Add Printer Driver Wizard page, just click FINISH</p>
+<p align="center"><img src="https://i.imgur.com/XiB0uvU.png" height="50%" width="50%" alt="image"/>
+
+<p>13. Next, we add a printer. On the Print management interface, right-click on printer, click on Add printer</p>
+<p align="center"><img src="https://i.imgur.com/vpBAqzU.png" height="50%" width="50%" alt="image"/>
+
+<p>14. On the Network Printer Installation wizard>Printer Installation, leave it at default and click NEXT</p>
+<p align="center"><img src="https://i.imgur.com/iIVYnSg.png" height="50%" width="50%" alt="image"/>
+
+<p>15. On the Network Printer Installation wizard>Printer Address page, add an IP address, click NEXT</p>
+<p align="center"><img src="https://i.imgur.com/bQzD1eX.png" height="50%" width="50%" alt="image"/>
+
+<p>16. On the Network Printer Installation wizard>Additional port information required page, you can select the device type from the dropdown and click NEXT</p>
+<p align="center"><img src="https://i.imgur.com/ZO60rRX.png" height="50%" width="50%" alt="image"/>
+
+<p>17. On the Network Printer Installation wizard>Print Driver page, select use an existing printer driver on the computer and from the dropdown select the earlier downloaded driver and click NEXT</p>
+<p align="center"><img src="https://i.imgur.com/lDYazsq.png" height="50%" width="50%" alt="image"/>
+
+<p>18. On the Network Printer Installation wizard>Printer Name and Sharing Settings, Input a share name and click NEXT</p>
+<p align="center"><img src="https://i.imgur.com/9Fzg9TJ.png" height="50%" width="50%" alt="image"/>
+
+<p>19. On the Network Printer Installation wizard>Printer Found page, click NEXT</p>
+<p align="center"><img src="https://i.imgur.com/wF5Gs3p.png" height="50%" width="50%" alt="image"/>
+
+<p>20. On the Network Printer Installation wizard>Completing the Network Printer Installation Wizard page, click FINISH</p>
+<p align="center"><img src="https://i.imgur.com/rQ9iQYP.png" height="50%" width="50%" alt="image"/>
+
+<p>21. Back on the Print Management interface, under the Print Server, click on printers, from the list of printers, right-click on the one we just added and select Deploy with Group Policy</p>
+<p align="center"><img src="https://i.imgur.com/UzDQmwq.png" height="50%" width="50%" alt="image"/>
+
+<p>22. On the Deploy with group policy page, click browse to select the Printer Policy GPO earlier created, select “The Computers that this GPO applies to(per machine) checkbox then click Add. After this is done, click Apply and then OK.</p>
+<p align="center"><img src="https://i.imgur.com/6px5OJB.png" height="50%" width="50%" alt="image"/>
+
+<p>23. After all the steps, We need to force this update, open powershell and type in <b><i>“gpudate /force”</i></b></p>
+<p align="center"><img src="https://i.imgur.com/Pr6mToq.png" height="50%" width="50%" alt="image"/>
+
+<p>24. To confirm client computers in OU can discover this printer, go to control panel>hardware and sound>devices and printer, and there we found it. One can also go to notepad and click on print to check if the printer is part of the options</p>
+<p align="center"><img src="https://i.imgur.com/1QVKxHO.png" height="50%" width="50%" alt="image"/>
+
+<p><b>NOTE: You need to also List printer in Directory. To do this, expand Print Servers >Printer, then right-click on the printers, go to properties, enable the List in Directory checkbox, click Apply and OK</b></p>
+<p align="center"><img src="https://i.imgur.com/ixqf8V5.png" height="50%" width="50%" alt="image"/>
+
+<br>
+<br>
+
+<h3>*Configuring a Shared Folder and Accessing it by a specific Group</h3>
+<p>1. </p>
+
+
+
+
+<p align="center"><img src="" height="50%" width="50%" alt="image"/>
