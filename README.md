@@ -1,8 +1,6 @@
 <h1>Resource Access</h1>
 <p>Resource access is the management of permissions that determine which users or systems can view, modify, or interact with specific network resources such as files, applications and devices based on user permissions and roles</p>
 
-<br>
-
 <h3>*Sharing a printer</h3>
 <p>1. To share a printer for an organization or a branch(OU) of an organization to use, first we need to create a GPO, give it a descriptive name</p>
 <p align="center"><img src="https://i.imgur.com/gNpXx1P.png" height="50%" width="50%" alt="image"/>
